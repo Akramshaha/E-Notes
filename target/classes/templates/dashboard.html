@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <title>Trending Topics Dashboard</title>
+    <script th:replace="fragments/header :: headerElement"></script>  
+  </head>
+  <body>
+    <div th:replace="fragments/header :: header"></div>
+   
+    <div class="p-5" style="margin-top: 1.5em;">
+      
+      
+      <div class="row">
+      	<div class="col-6">
+ 	      	<div class="border text-light p-3 text-center" style="background-color:#58376C;">
+ 	      		<h1>Your Topics</h1>
+ 	      	</div>
+      	
+      		<div class="card m-4" th:each="product : ${products}">
+	      		<div th:if="${user.id == product.user.id}">
+			      	<div class="card-header">
+			      		<div class="row p-1 justify-content-between">
+			      		
+				      		<h5 class="card-title " th:text="${product.name == null ? 'No Name' : product.name}">Special title treatment</h5>
+						          
+						    <span th:text="${product.user.name}"></span>
+			      		</div>
+			      	</div>
+			        <div class="card-body">	
+			          <h6 class="card-subtitle mb-2 text-muted" th:text="${product.published ? 'Published' : 'Not Published'}">Card subtitle</h6>
+						
+							
+			          		<a th:href="@{/products/{productId}(productId=${product.id})}" class="btn btn-sm btn-primary">Edit</a>
+						
+			          <a th:href="@{/p/{productName}(productName=${product.name})}"style="background-color:#58376C;" class="btn btn-sm btn-info">Features</a>
+			        </div>
+	      		</div>
+      		</div>
+      	
+      	</div>
+      	
+      	<!--  Other Users Projects -->
+      	<div class="col-6">
+      		<div class="border p-3 text-center text-light" style="background-color:#58376C;"><h1>Others Topics</h1></div>
+      		<div class="card mt-4" th:each="product : ${products}">
+	      		<div th:if="${user.id != product.user.id}">
+			      	<div class="card-header">
+			      		<div class="row p-1 justify-content-between">
+			      		
+				      		<h5 class="card-title " th:text="${product.name == null ? 'No Name' : product.name}">Special title treatment</h5>
+						          
+						    <span th:text="${product.user.name}"></span>
+			      		</div>
+			      	</div>
+			        <div class="card-body">	
+			          <h6 class="card-subtitle mb-2 text-muted" th:text="${product.published ? 'Published' : 'Not Published'}">Card subtitle</h6>
+						
+						
+			          <a th:href="@{/p/{productName}(productName=${product.name})}" class="btn btn-sm btn-primary"style="background-color:#58376C;">View Features</a>
+			        </div>
+	      		</div>
+      		</div>
+      	
+      	</div>
+      
+      
+      </div>
+
+      
+      
+      
+     
+
+
+
+      <div class="row p-5">
+        <div class="col">
+          <form action="/products" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <button class="btn btn-primary"style="background-color:#58376C;" id="createProduct">Make a Topic</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

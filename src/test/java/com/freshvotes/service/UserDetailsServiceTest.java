@@ -9,8 +9,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class UserDetailsServiceTest {
 
   
-  @Test
-  public void generate_encrypted_password() {
+@SuppressWarnings("deprecation")
+@Test
+public void generate_encrypted_password() {
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     String rawPassword = "asdfasdf";
     String encodedPassword = encoder.encode(rawPassword);

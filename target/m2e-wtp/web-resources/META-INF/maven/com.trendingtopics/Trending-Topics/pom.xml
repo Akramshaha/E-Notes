@@ -6,7 +6,7 @@
 	<groupId>com.trendingtopics</groupId>
 	<artifactId>Trending-Topics</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>FreshVotes</name>
 	<description>Fresh Votes App</description>

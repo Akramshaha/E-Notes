@@ -14,9 +14,10 @@
 			<div class="card-body">
 				<span class="text-secondary">Features</span><hr>
 				<div th:each="feature : ${product.features}">
-					<li><a
-						th:href="@{/products/{productId}/features/{featureId}(productId=${product.id},featureId=${feature.id})}"
-						th:text="${feature.title}"></a></li>	
+					<li>
+						<a th:href="@{/products/{productId}/features/{featureId}(productId=${product.id},featureId=${feature.id})}"th:text="${feature.title}">
+						</a>
+					</li>	
 				</div>
 			</div>
 		</div>
